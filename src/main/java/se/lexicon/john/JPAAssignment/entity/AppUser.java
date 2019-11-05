@@ -25,7 +25,8 @@ public class AppUser {
     }
 
     //Constructor 2
-    public AppUser(String firstName, String lastName, String email) {
+    public AppUser(String firstName, String lastName, String email)
+    {
         this(0,firstName,lastName,email);
     }
 
