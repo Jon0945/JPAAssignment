@@ -1,14 +1,21 @@
 package se.lexicon.john.JPAAssignment.entity;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Objects;
 
 public class ProductOrder {
     //Fields
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int productorder_id;
     private LocalDateTime orderDateTime;
     private HashSet<OrderItem> products;
+    @Column(unique = true)
     private AppUser customer;
 
     //Constructor 1
@@ -32,7 +39,8 @@ public class ProductOrder {
     public int getId() { return productorder_id; }
     public LocalDateTime getOrderDateTime() { return orderDateTime; }
     public void setOrderDateTime(LocalDateTime orderDateTime) { this.orderDateTime = orderDateTime; }
-    public HashSet<OrderItem> getProductorder() { return products; }
+    public HashSet<OrderItem> getProducts() { return products; }
+    public void setProducts(OrderItem orderitem) {this.products.add(orderitem);}
     public AppUser getCustomer() { return customer; }
     public void setCustomer(AppUser customer) { this.customer = customer; }
 

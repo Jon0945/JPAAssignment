@@ -1,12 +1,19 @@
 package se.lexicon.john.JPAAssignment.entity;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Objects;
 
 public class OrderItem {
 
     //Fields
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int orderitem_id;
     private int quantity;
+    @Column(unique = true)
     private Product product;
     private ProductOrder productOrder;
 

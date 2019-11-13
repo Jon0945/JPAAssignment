@@ -3,13 +3,14 @@ package se.lexicon.john.JPAAssignment;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 import se.lexicon.john.JPAAssignment.entity.OrderItem;
 import se.lexicon.john.JPAAssignment.entity.Product;
 import se.lexicon.john.JPAAssignment.entity.ProductOrder;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
+@SpringBootTest
 public class OrderItemTest {
     private OrderItem testOrderItem;
     private int testQuantity = 12;

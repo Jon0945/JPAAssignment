@@ -3,6 +3,7 @@ package se.lexicon.john.JPAAssignment;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 import se.lexicon.john.JPAAssignment.entity.AppUser;
 import se.lexicon.john.JPAAssignment.entity.OrderItem;
 import se.lexicon.john.JPAAssignment.entity.Product;
@@ -13,6 +14,7 @@ import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@SpringBootTest
 public class ProductOrderTest {
     private ProductOrder testProductOrder;
     private Product testProduct = new Product("Testbär", 42);
@@ -75,6 +77,19 @@ public class ProductOrderTest {
     }
 
     @Test
+    public void testSetProduct() {
+        //Arrange
+        Product testProduct2 = new Product("Testpiller",56);
+        OrderItem testOrderItem2 = new OrderItem(24,testProduct2);
+
+        //Act
+        testProductOrder.setProducts(testOrderItem2);
+
+        //Assert
+        assertTrue(testProductOrder.getProducts().contains(testOrderItem2));
+    }
+
+    @Test
     public void testToStringOverride() {
         //Act
         String result = testProductOrder.toString();
@@ -100,7 +115,7 @@ public class ProductOrderTest {
         testProductOrder.addOrderItem(testOrderItem);
 
         //Assert
-        assertTrue(testProductOrder.getProductorder().contains(testOrderItem));
+        assertTrue(testProductOrder.getProducts().contains(testOrderItem));
         assertEquals(testOrderItem.getProductOrder(), testProductOrder);
     }
 
@@ -113,7 +128,7 @@ public class ProductOrderTest {
         testProductOrder.removeOrderItem(testOrderItem);
 
         //Assert
-        assertTrue(testProductOrder.getProductorder().isEmpty());
+        assertTrue(testProductOrder.getProducts().isEmpty());
         assertNull(testOrderItem.getProductOrder());
     }
 
