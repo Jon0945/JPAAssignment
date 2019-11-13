@@ -11,14 +11,14 @@ public class Product {
     //Fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int product_id;
     @Column(unique = true)
     private String name;
     private int price;
 
     //Constructor 1
     public Product(int id, String name, int price) {
-        this.id = id;
+        this.product_id = id;
         this.setName(name);
         this.setPrice(price);
     }
@@ -32,7 +32,7 @@ public class Product {
     public Product() {}
 
     //Getters & Setters (sans SetID)
-    public int getId() { return id; }
+    public int getId() { return product_id; }
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
     public int getPrice() { return price; }
@@ -44,21 +44,21 @@ public class Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return id == product.id &&
+        return product_id == product.product_id &&
                 price == product.price &&
                 name.equals(product.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, price);
+        return Objects.hash(product_id, name, price);
     }
 
     //ToString Override
     @Override
     public String toString() {
         return "Product{" +
-                "id=" + id +
+                "id=" + product_id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 '}';

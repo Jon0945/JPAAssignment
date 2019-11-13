@@ -5,29 +5,28 @@ import java.util.Objects;
 public class OrderItem {
 
     //Fields
-    private int id;
+    private int orderitem_id;
     private int quantity;
     private Product product;
     private ProductOrder productOrder;
 
     //Constructor 1
-    public OrderItem(int id, int quantity, Product product, ProductOrder productOrder) {
-        this.id = id;
+    public OrderItem(int id, int quantity, Product product) {
+        this.orderitem_id = id;
         this.setQuantity(quantity);
         this.setProduct(product);
-        this.setProductOrder(productOrder);
     }
 
     //Constructor 2
-    public OrderItem(int quantity, Product product, ProductOrder productOrder) {
-        this(0,quantity,product,productOrder);
+    public OrderItem(int quantity, Product product) {
+        this(0,quantity,product);
     }
 
     //Empty Constructor
     public OrderItem() {}
 
     //Getters & Setters (sans SetID)
-    public int getId() { return id; }
+    public int getId() { return orderitem_id; }
     public int getQuantity() { return quantity; }
     public void setQuantity(int quantity) { this.quantity = quantity; }
     public Product getProduct() { return product; }
@@ -37,7 +36,9 @@ public class OrderItem {
 
     //Method to calculate Price
     public int calculateOrderPrice() {
-        return (product.getPrice() * quantity);
+        int result;
+        result = (this.getProduct().getPrice() * this.getQuantity());
+        return  result;
     }
 
     //Equals & Hashcode Override
@@ -46,25 +47,24 @@ public class OrderItem {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         OrderItem orderItem = (OrderItem) o;
-        return id == orderItem.id &&
+        return orderitem_id == orderItem.orderitem_id &&
                 quantity == orderItem.quantity &&
-                product.equals(orderItem.product) &&
-                productOrder.equals(orderItem.productOrder);
+                product.equals(orderItem.product);
+
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, quantity, product, productOrder);
+        return Objects.hash(orderitem_id, quantity, product);
     }
 
     //ToString Override
     @Override
     public String toString() {
         return "OrderItem{" +
-                "id=" + id +
+                "id=" + orderitem_id +
                 ", quantity=" + quantity +
                 ", product=" + product +
-                ", productOrder=" + productOrder +
                 '}';
     }
 }

@@ -7,18 +7,18 @@ import se.lexicon.john.JPAAssignment.entity.OrderItem;
 import se.lexicon.john.JPAAssignment.entity.Product;
 import se.lexicon.john.JPAAssignment.entity.ProductOrder;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+
 
 public class OrderItemTest {
     private OrderItem testOrderItem;
     private int testQuantity = 12;
     private Product testProduct = new Product(0,"Testbär",42);
-    private ProductOrder testProductOrder = null;
+    private ProductOrder testProductOrder;
 
     @BeforeEach
     public void createProduct() {
-        testOrderItem = new OrderItem(testQuantity,testProduct,testProductOrder);
+        testOrderItem = new OrderItem(testQuantity,testProduct);
     }
 
     @AfterEach
@@ -88,12 +88,12 @@ public class OrderItemTest {
         //Assert
         assertTrue(result.contains(String.valueOf(testOrderItem.getQuantity())));
         assertTrue(result.contains(String.valueOf(testOrderItem.getProduct())));
-        assertTrue(result.contains(String.valueOf(testOrderItem.getProductOrder())));
+
     }
 
     @Test void testEqualsAndHashCode() {
         //Arrange
-        OrderItem testOrderItem2 = new OrderItem(testQuantity,testProduct,testProductOrder);
+        OrderItem testOrderItem2 = new OrderItem(testQuantity,testProduct);
 
         //Assert
         assertEquals(testOrderItem2,testOrderItem);
