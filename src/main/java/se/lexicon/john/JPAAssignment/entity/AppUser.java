@@ -1,16 +1,14 @@
 package se.lexicon.john.JPAAssignment.entity;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
 public class AppUser {
     //Fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int appuser_id;
+    private int id;
     private String firstName;
     private String lastName;
     @Column(unique = true)
@@ -18,7 +16,7 @@ public class AppUser {
 
     //Constructor 1
     public AppUser(int id, String firstName, String lastName, String email) {
-        this.appuser_id = id;
+        this.id = id;
         setFirstName(firstName);
         setLastName(lastName);
         setEmail(email);
@@ -34,7 +32,7 @@ public class AppUser {
     public AppUser() { }
 
     //Getters & Setters (sans setID)
-    public int getId() { return appuser_id; }
+    public int getId() { return id; }
     public String getFirstName() { return firstName; }
     public void setFirstName(String firstName) { this.firstName = firstName; }
     public String getLastName() { return lastName; }
@@ -48,7 +46,7 @@ public class AppUser {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AppUser appUser = (AppUser) o;
-        return appuser_id == appUser.appuser_id &&
+        return id == appUser.id &&
                 firstName.equals(appUser.firstName) &&
                 lastName.equals(appUser.lastName) &&
                 email.equals(appUser.email);
@@ -56,14 +54,14 @@ public class AppUser {
 
     @Override
     public int hashCode() {
-        return Objects.hash(appuser_id, firstName, lastName, email);
+        return Objects.hash(id, firstName, lastName, email);
     }
 
     //ToString override
     @Override
     public String toString() {
         return "AppUser{" +
-                "id=" + appuser_id +
+                "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +

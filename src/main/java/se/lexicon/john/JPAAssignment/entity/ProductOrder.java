@@ -1,26 +1,34 @@
 package se.lexicon.john.JPAAssignment.entity;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
+@Entity
 public class ProductOrder {
     //Fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int productorder_id;
+    private int id;
     private LocalDateTime orderDateTime;
-    private HashSet<OrderItem> products;
-    @Column(unique = true)
+    @OneToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE,
+            CascadeType.DETACH,
+            CascadeType.REFRESH},
+            fetch = FetchType.LAZY,
+            mappedBy = "productOrder",
+            orphanRemoval = true)
+
+    private Set<OrderItem> products;
+    @ManyToOne
     private AppUser customer;
 
     //Constructor 1
-    public ProductOrder(int productorder_id, LocalDateTime orderDateTime, AppUser customer) {
-        this.productorder_id = productorder_id;
+    public ProductOrder(int id, LocalDateTime orderDateTime, AppUser customer) {
+        this.id = id;
         this.setOrderDateTime(orderDateTime);
         this.products = new HashSet<>();
         this.setCustomer(customer);
@@ -36,10 +44,10 @@ public class ProductOrder {
     }
 
     //Getters & Setters
-    public int getId() { return productorder_id; }
+    public int getId() { return id; }
     public LocalDateTime getOrderDateTime() { return orderDateTime; }
     public void setOrderDateTime(LocalDateTime orderDateTime) { this.orderDateTime = orderDateTime; }
-    public HashSet<OrderItem> getProducts() { return products; }
+    public Set<OrderItem> getProducts() { return products; }
     public void setProducts(OrderItem orderitem) {this.products.add(orderitem);}
     public AppUser getCustomer() { return customer; }
     public void setCustomer(AppUser customer) { this.customer = customer; }
@@ -50,21 +58,21 @@ public class ProductOrder {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ProductOrder that = (ProductOrder) o;
-        return productorder_id == that.productorder_id &&
+        return id == that.id &&
                 orderDateTime.equals(that.orderDateTime) &&
                 customer.equals(that.customer);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(productorder_id, orderDateTime, customer);
+        return Objects.hash(id, orderDateTime, customer);
     }
 
     //ToString override
     @Override
     public String toString() {
         return "ProductOrder{" +
-                "productorder_id=" + productorder_id +
+                "productorder_id=" + id +
                 ", orderDateTime=" + orderDateTime +
                 ", customer=" + customer +
                 '}';

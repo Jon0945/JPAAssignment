@@ -8,7 +8,7 @@ import se.lexicon.john.JPAAssignment.entity.Product;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
+
 public class ProductTest {
     private Product testProduct;
     private int testId;

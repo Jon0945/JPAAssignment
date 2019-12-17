@@ -1,25 +1,29 @@
 package se.lexicon.john.JPAAssignment.entity;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
 public class OrderItem {
 
     //Fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int orderitem_id;
+    private int id;
     private int quantity;
-    @Column(unique = true)
+    @ManyToOne (
+            fetch = FetchType.EAGER )
+    @JoinColumn(name = "product_id")
     private Product product;
+    @ManyToOne (
+            fetch = FetchType.LAZY )
+    @JoinColumn(name = "order_id")
     private ProductOrder productOrder;
+
 
     //Constructor 1
     public OrderItem(int id, int quantity, Product product) {
-        this.orderitem_id = id;
+        this.id = id;
         this.setQuantity(quantity);
         this.setProduct(product);
     }
@@ -33,7 +37,7 @@ public class OrderItem {
     public OrderItem() {}
 
     //Getters & Setters (sans SetID)
-    public int getId() { return orderitem_id; }
+    public int getId() { return id; }
     public int getQuantity() { return quantity; }
     public void setQuantity(int quantity) { this.quantity = quantity; }
     public Product getProduct() { return product; }
@@ -54,7 +58,7 @@ public class OrderItem {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         OrderItem orderItem = (OrderItem) o;
-        return orderitem_id == orderItem.orderitem_id &&
+        return id == orderItem.id &&
                 quantity == orderItem.quantity &&
                 product.equals(orderItem.product);
 
@@ -62,14 +66,14 @@ public class OrderItem {
 
     @Override
     public int hashCode() {
-        return Objects.hash(orderitem_id, quantity, product);
+        return Objects.hash(id, quantity, product);
     }
 
     //ToString Override
     @Override
     public String toString() {
         return "OrderItem{" +
-                "id=" + orderitem_id +
+                "id=" + id +
                 ", quantity=" + quantity +
                 ", product=" + product +
                 '}';
