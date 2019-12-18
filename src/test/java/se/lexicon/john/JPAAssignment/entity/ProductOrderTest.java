@@ -1,4 +1,4 @@
-package se.lexicon.john.JPAAssignment;
+package se.lexicon.john.JPAAssignment.entity;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

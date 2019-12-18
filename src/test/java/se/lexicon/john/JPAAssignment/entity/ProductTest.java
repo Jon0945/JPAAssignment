@@ -1,4 +1,4 @@
-package se.lexicon.john.JPAAssignment;
+package se.lexicon.john.JPAAssignment.entity;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 public class ProductTest {
+
     private Product testProduct;
     private int testId;
     private String testName = "Testbär";
@@ -39,7 +40,6 @@ public class ProductTest {
         assertEquals(expectedName, testProduct.getName());
         assertEquals(expectedPrice,testProduct.getPrice());
     }
-
     @Test
     public void testSetName() {
         //Arrange
