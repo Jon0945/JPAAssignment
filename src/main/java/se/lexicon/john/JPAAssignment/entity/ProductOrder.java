@@ -11,7 +11,7 @@ public class ProductOrder {
     //Fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int productorderid;
     private LocalDateTime orderDateTime;
     @OneToMany(cascade = {
             CascadeType.PERSIST,
@@ -27,8 +27,8 @@ public class ProductOrder {
     private AppUser customer;
 
     //Constructor 1
-    public ProductOrder(int id, LocalDateTime orderDateTime, AppUser customer) {
-        this.id = id;
+    public ProductOrder(int productorderid, LocalDateTime orderDateTime, AppUser customer) {
+        this.productorderid = productorderid;
         this.setOrderDateTime(orderDateTime);
         this.products = new HashSet<>();
         this.setCustomer(customer);
@@ -44,7 +44,7 @@ public class ProductOrder {
     }
 
     //Getters & Setters
-    public int getId() { return id; }
+    public int getId() { return productorderid; }
     public LocalDateTime getOrderDateTime() { return orderDateTime; }
     public void setOrderDateTime(LocalDateTime orderDateTime) { this.orderDateTime = orderDateTime; }
     public Set<OrderItem> getProducts() { return products; }
@@ -58,21 +58,21 @@ public class ProductOrder {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ProductOrder that = (ProductOrder) o;
-        return id == that.id &&
+        return productorderid == that.productorderid &&
                 orderDateTime.equals(that.orderDateTime) &&
                 customer.equals(that.customer);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, orderDateTime, customer);
+        return Objects.hash(productorderid, orderDateTime, customer);
     }
 
     //ToString override
     @Override
     public String toString() {
         return "ProductOrder{" +
-                "productorder_id=" + id +
+                "productorder_id=" + productorderid +
                 ", orderDateTime=" + orderDateTime +
                 ", customer=" + customer +
                 '}';

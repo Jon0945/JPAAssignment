@@ -5,6 +5,6 @@ import se.lexicon.john.JPAAssignment.entity.AppUser;
 
 import java.util.Optional;
 
-public interface AppUserRepository extends CrudRepository<AppUser, String> {
+public interface AppUserRepository extends CrudRepository<AppUser, Integer> {
     Optional<AppUser> findByEmailIgnoreCase(String email);
 }

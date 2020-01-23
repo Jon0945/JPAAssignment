@@ -6,5 +6,5 @@ import se.lexicon.john.JPAAssignment.entity.Product;
 import java.util.List;
 
 public interface ProductRepository extends CrudRepository<Product, Integer> {
-    List<Product> findByNameContainingIgnoreCase(String productname);
+    List<Product> findByProductnameContainingIgnoreCase(String productname);
 }

@@ -9,7 +9,7 @@ public class OrderItem {
     //Fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int orderitemid;
     private int quantity;
     @ManyToOne (
             fetch = FetchType.EAGER )
@@ -22,8 +22,8 @@ public class OrderItem {
 
 
     //Constructor 1
-    public OrderItem(int id, int quantity, Product product) {
-        this.id = id;
+    public OrderItem(int orderitemid, int quantity, Product product) {
+        this.orderitemid = orderitemid;
         this.setQuantity(quantity);
         this.setProduct(product);
     }
@@ -37,7 +37,7 @@ public class OrderItem {
     public OrderItem() {}
 
     //Getters & Setters (sans SetID)
-    public int getId() { return id; }
+    public int getOrderitemid() { return orderitemid; }
     public int getQuantity() { return quantity; }
     public void setQuantity(int quantity) { this.quantity = quantity; }
     public Product getProduct() { return product; }
@@ -58,7 +58,7 @@ public class OrderItem {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         OrderItem orderItem = (OrderItem) o;
-        return id == orderItem.id &&
+        return orderitemid == orderItem.orderitemid &&
                 quantity == orderItem.quantity &&
                 product.equals(orderItem.product);
 
@@ -66,14 +66,14 @@ public class OrderItem {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, quantity, product);
+        return Objects.hash(orderitemid, quantity, product);
     }
 
     //ToString Override
     @Override
     public String toString() {
         return "OrderItem{" +
-                "id=" + id +
+                "id=" + orderitemid +
                 ", quantity=" + quantity +
                 ", product=" + product +
                 '}';

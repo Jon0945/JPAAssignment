@@ -8,15 +8,15 @@ public class AppUser {
     //Fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int appuserid;
     private String firstName;
     private String lastName;
     @Column(unique = true)
     private String email;
 
     //Constructor 1
-    public AppUser(int id, String firstName, String lastName, String email) {
-        this.id = id;
+    public AppUser(int appuserid, String firstName, String lastName, String email) {
+        this.appuserid = appuserid;
         setFirstName(firstName);
         setLastName(lastName);
         setEmail(email);
@@ -32,7 +32,7 @@ public class AppUser {
     public AppUser() { }
 
     //Getters & Setters (sans setID)
-    public int getId() { return id; }
+    public int getId() { return appuserid; }
     public String getFirstName() { return firstName; }
     public void setFirstName(String firstName) { this.firstName = firstName; }
     public String getLastName() { return lastName; }
@@ -46,7 +46,7 @@ public class AppUser {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AppUser appUser = (AppUser) o;
-        return id == appUser.id &&
+        return appuserid == appUser.appuserid &&
                 firstName.equals(appUser.firstName) &&
                 lastName.equals(appUser.lastName) &&
                 email.equals(appUser.email);
@@ -54,14 +54,14 @@ public class AppUser {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, email);
+        return Objects.hash(appuserid, firstName, lastName, email);
     }
 
     //ToString override
     @Override
     public String toString() {
         return "AppUser{" +
-                "id=" + id +
+                "id=" + appuserid +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +

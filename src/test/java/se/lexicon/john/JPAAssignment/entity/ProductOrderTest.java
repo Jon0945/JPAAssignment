@@ -4,13 +4,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import se.lexicon.john.JPAAssignment.entity.AppUser;
-import se.lexicon.john.JPAAssignment.entity.OrderItem;
-import se.lexicon.john.JPAAssignment.entity.Product;
-import se.lexicon.john.JPAAssignment.entity.ProductOrder;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,7 +16,7 @@ public class ProductOrderTest {
     private Product testProduct = new Product("Testbär", 42);
     private OrderItem testOrderItem = new OrderItem(12, testProduct);
     private LocalDateTime testLocalDateTime = LocalDateTime.of(2019, 11, 12, 12, 0);
-    private HashSet<OrderItem> testProducts = new HashSet<>();
+    private Set<OrderItem> testProducts;
     private AppUser testCustomer = new AppUser("Ture", "Test", "ture.test@gmail.com");
 
     @BeforeEach
@@ -37,7 +33,7 @@ public class ProductOrderTest {
     public void testBeforeWorks() {
         //Arrange
         LocalDateTime expectedLDT = testLocalDateTime;
-        HashSet<OrderItem> expectedProducts = testProducts;
+        Set<OrderItem> expectedProducts = testProducts;
         AppUser expectedCustomer = testCustomer;
 
         //Act

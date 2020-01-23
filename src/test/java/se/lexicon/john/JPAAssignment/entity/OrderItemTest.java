@@ -4,9 +4,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import se.lexicon.john.JPAAssignment.entity.OrderItem;
-import se.lexicon.john.JPAAssignment.entity.Product;
-import se.lexicon.john.JPAAssignment.entity.ProductOrder;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -38,7 +35,7 @@ public class OrderItemTest {
         //done by @BeforeEach
 
         //Assert
-        assertTrue(testOrderItem.getId() > -1);
+        assertTrue(testOrderItem.getOrderitemid() > -1);
         assertEquals(expectedQuantity, testOrderItem.getQuantity());
         assertEquals(expectedProduct, testProduct);
         assertEquals(expectedProductOrder, testProductOrder);

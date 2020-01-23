@@ -36,7 +36,7 @@ public class ProductRepositoryTest {
 
     @Test
     void given_name_return_List_of_matching_Product_names() {
-        List<Product> matchingproducts = productRepository.findByNameContainingIgnoreCase("bÄR");
+        List<Product> matchingproducts = productRepository.findByProductnameContainingIgnoreCase("bÄR");
 
         assertEquals(1,matchingproducts.size());
         assertEquals("Testbär",matchingproducts.get(0).getName());

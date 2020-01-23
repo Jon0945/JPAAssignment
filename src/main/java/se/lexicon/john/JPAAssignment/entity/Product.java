@@ -9,30 +9,30 @@ public class Product {
     //Fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int productid;
     @Column(unique = true)
-    private String name;
+    private String productname;
     private int price;
 
     //Constructor 1
-    public Product(int id, String name, int price) {
-        this.id = id;
-        this.setName(name);
+    public Product(int productid, String productname, int price) {
+        this.productid = productid;
+        this.setName(productname);
         this.setPrice(price);
     }
 
     //Constructor 2
-    public Product(String name, int price) {
-        this(0,name,price);
+    public Product(String productname, int price) {
+        this(0, productname,price);
     }
 
     //Empty Constructor
     public Product() {}
 
     //Getters & Setters (sans SetID)
-    public int getId() { return id; }
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public int getId() { return productid; }
+    public String getName() { return productname; }
+    public void setName(String name) { this.productname = name; }
     public int getPrice() { return price; }
     public void setPrice(int price) { this.price = price; }
 
@@ -42,22 +42,22 @@ public class Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return id == product.id &&
+        return productid == product.productid &&
                 price == product.price &&
-                name.equals(product.name);
+                productname.equals(product.productname);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, price);
+        return Objects.hash(productid, productname, price);
     }
 
     //ToString Override
     @Override
     public String toString() {
         return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+                "id=" + productid +
+                ", name='" + productname + '\'' +
                 ", price=" + price +
                 '}';
     }
